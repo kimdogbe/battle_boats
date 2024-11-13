@@ -1,0 +1,14 @@
+{
+  "name": "battle_boats",
+  "version": "1.0.0",
+  "description": "Lil game of battleships",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "kimdogbe",
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
