@@ -19,18 +19,32 @@ const gridMapY = (num) => num - 1;
 export function createGameBoard() {
   let grid = newGrid;
 
+  const fleet = {
+    'carrier': { 'ship': createShip(5), 'location': [] },
+    'battleship': { 'ship': createShip(4), 'location': [] },
+    'destroyer': { 'ship': createShip(3), 'location': [] },
+    'submarine': { 'ship': createShip(3), 'location': [] },
+    'patrolBoat': { 'ship': createShip(2), 'location': [] },
+  }
+
   const getGrid = () => grid;
 
-  function placeShip(startLocation, orientation, shipLength) {
-    let endLocation = '';
-    const row = Number(startLocation.split('')[0]);
-    const col = Number(startLocation.split('')[1]);
+  function placeShip(row, col, orientation, ship) {
+    const x = gridMapX[row];
+    const y = gridMapY(col);
+    const shipLength = ship.ship.length;
 
-    if (orientation === 'horizontal' && checkWithinBounds(col + (shipLength-1)) ) {
-      for(let i = col; i <= col + (shipLength - 1); i++) grid[row][i] = 'O';
+    if (orientation === 'horizontal' && checkWithinBounds(y + (shipLength-1)) ) {
+      for(let i = y; i <= y + (shipLength - 1); i++){
+        grid[x][i] = 'O';
+        ship.location.push(row + col);
+      } 
     }
-    else if (orientation === 'vertical' && checkWithinBounds(row + (shipLength-1)) ) {
-      for(let i = row; i <= row + (shipLength - 1); i++) grid[i][col] = 'O';
+    else if (orientation === 'vertical' && checkWithinBounds(x + (shipLength-1)) ) {
+      for(let i = x; i <= x + (shipLength - 1); i++){
+        grid[i][y] = 'O';
+        ship.location.push(row + col);
+      } 
     }
   }
 
@@ -44,14 +58,20 @@ export function createGameBoard() {
 
     if (grid[x][y] === 'O') {
       grid[x][y] = 'X'
+
+      for (const [_, ship] of Object.entries(fleet)) {
+        if (ship.location.includes(row + col)){
+          ship.ship.hitShip();
+          if (ship.ship.sunk) return 'hit! ship sunk'
+        }
+      }
+
       return 'hit!';
     }
     else if (grid[x][y] === '-') {
       grid[x][y] = 'M'
       return 'miss';
     }
-
-    // TODO: implement ship sink + record coords of shot
   }
 
   function checkWithinBounds(num){
@@ -59,14 +79,4 @@ export function createGameBoard() {
   }
 
   return { getGrid, placeShip, recieveAttack }
-}
-
-export function createFleet(){
-  const carrier = createShip(5);
-  const battleship = createShip(4);
-  const destroyer = createShip(3);
-  const submarine = createShip(3);
-  const patrolBoat = createShip(2);
-
-  return { carrier, battleship, destroyer, submarine, patrolBoat }
 }

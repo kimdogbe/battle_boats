@@ -1,4 +1,5 @@
 import { createGameBoard } from '../src/gameboard.js'
+import { createShip } from '../src/ship.js';
 
 const gameBoard = createGameBoard();
 
@@ -9,10 +10,10 @@ test('check board created', () => {
 });
 
 test('check place ship', () => {
-  const shipOneLength = 4;
-  gameBoard.placeShip('00', 'horizontal', shipOneLength)
-  const shipTwoLength = 5;
-  gameBoard.placeShip('24', 'vertical', shipTwoLength)
+  const shipOne = {'carrier': { 'ship': createShip(4), 'location': [] },}
+  gameBoard.placeShip('A', '1', 'horizontal', shipOne.carrier)
+  const shipTwo = {'carrier': { 'ship': createShip(5), 'location': [] },}
+  gameBoard.placeShip('C', '5', 'vertical', shipTwo.carrier)
   
   expect(gameBoard.getGrid()).toEqual([
     ['O','O','O','O','-','-','-','-','-','-'],
@@ -29,9 +30,9 @@ test('check place ship', () => {
 });
 
 test('check place ship not out of bounds', () => {
-  const shipLength = 4;
-  gameBoard.placeShip('09', 'horizontal', shipLength);
-  gameBoard.placeShip('90', 'vertical', shipLength);
+  const ship = {'carrier': { 'ship': createShip(4), 'location': [] },}
+  gameBoard.placeShip('A', '10', 'horizontal', ship.carrier);
+  gameBoard.placeShip('J', '1', 'vertical', ship.carrier);
 
   expect(gameBoard.getGrid()).toEqual([
     ['O','O','O','O','-','-','-','-','-','-'],
@@ -70,9 +71,9 @@ test('check gameboard updated after attacks', () => {
   ])
 });
 
-// test('check all ships sunk (game over)', () => {
-//   expect(1).toBe(2);
-// });
+test('check all ships sunk (game over)', () => {
+  expect(1).toBe(2);
+});
 
 // test('show missed attacks', () => {
 //   expect(1).toBe(2);
