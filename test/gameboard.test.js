@@ -72,9 +72,5 @@ test('check gameboard updated after attacks', () => {
 });
 
 test('check all ships sunk (game over)', () => {
-  expect(1).toBe(2);
+  expect(gameBoard.checkGameOver()).toBe(false);
 });
-
-// test('show missed attacks', () => {
-//   expect(1).toBe(2);
-// });

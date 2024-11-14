@@ -48,8 +48,6 @@ export function createGameBoard() {
     }
   }
 
-  // TODO: place ship could simply take the location and ship and add the locations to the ship
-
   function recieveAttack(row, col) {
     if ( (row in gridMapX) && (col < 1) && (col > 10) ) return "Somehow you've you're out of bounds. Try again"
     
@@ -74,9 +72,16 @@ export function createGameBoard() {
     }
   }
 
+  function checkGameOver() {
+    for (const [_, ship] of Object.entries(fleet)){
+      if (!ship.ship.sunk) return false
+    }
+    return true
+  }
+
   function checkWithinBounds(num){
     return num < 10 
   }
 
-  return { getGrid, placeShip, recieveAttack }
+  return { getGrid, placeShip, recieveAttack, checkGameOver }
 }
