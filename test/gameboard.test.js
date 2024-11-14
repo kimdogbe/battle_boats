@@ -28,17 +28,47 @@ test('check place ship', () => {
   ])
 });
 
-// test('check place ship not out of bounds', () => {
+test('check place ship not out of bounds', () => {
+  const shipLength = 4;
+  gameBoard.placeShip('09', 'horizontal', shipLength);
+  gameBoard.placeShip('90', 'vertical', shipLength);
 
-// })
+  expect(gameBoard.getGrid()).toEqual([
+    ['O','O','O','O','-','-','-','-','-','-'],
+    ['-','-','-','-','-','-','-','-','-','-'],
+    ['-','-','-','-','O','-','-','-','-','-'],
+    ['-','-','-','-','O','-','-','-','-','-'],
+    ['-','-','-','-','O','-','-','-','-','-'],
+    ['-','-','-','-','O','-','-','-','-','-'],
+    ['-','-','-','-','O','-','-','-','-','-'],
+    ['-','-','-','-','-','-','-','-','-','-'],
+    ['-','-','-','-','-','-','-','-','-','-'],
+    ['-','-','-','-','-','-','-','-','-','-']
+  ])
+})
 
-// test('check recieve attack hit', () => {
-//   expect(1).toBe(2);
-// });
+test('check recieve attack hit', () => {
+  expect(gameBoard.recieveAttack('C', '5')).toBe('hit!');
+});
 
-// test('check recieve attack miss', () => {
-//   expect(1).toBe(2);
-// });
+test('check recieve attack miss', () => {
+  expect(gameBoard.recieveAttack('C', '4')).toBe('miss');
+});
+
+test('check gameboard updated after attacks', () => {
+  expect(gameBoard.getGrid()).toEqual([
+    ['O','O','O','O','-','-','-','-','-','-'],
+    ['-','-','-','-','-','-','-','-','-','-'],
+    ['-','-','-','M','X','-','-','-','-','-'],
+    ['-','-','-','-','O','-','-','-','-','-'],
+    ['-','-','-','-','O','-','-','-','-','-'],
+    ['-','-','-','-','O','-','-','-','-','-'],
+    ['-','-','-','-','O','-','-','-','-','-'],
+    ['-','-','-','-','-','-','-','-','-','-'],
+    ['-','-','-','-','-','-','-','-','-','-'],
+    ['-','-','-','-','-','-','-','-','-','-']
+  ])
+});
 
 // test('check all ships sunk (game over)', () => {
 //   expect(1).toBe(2);
