@@ -20,11 +20,11 @@ export function createGameBoard() {
   let grid = newGrid;
 
   const fleet = {
-    'carrier': { 'ship': createShip(5), 'location': [] },
-    'battleship': { 'ship': createShip(4), 'location': [] },
-    'destroyer': { 'ship': createShip(3), 'location': [] },
-    'submarine': { 'ship': createShip(3), 'location': [] },
-    'patrolBoat': { 'ship': createShip(2), 'location': [] },
+    'carrier': createShip(5),
+    'battleship': createShip(4),
+    'destroyer': createShip(3),
+    'submarine': createShip(3),
+    'patrolBoat': createShip(2),
   }
 
   const getGrid = () => grid;
@@ -32,18 +32,18 @@ export function createGameBoard() {
   function placeShip(row, col, orientation, ship) {
     const x = gridMapX[row];
     const y = gridMapY(col);
-    const shipLength = ship.ship.length;
+    const shipLength = ship.length;
 
     if (orientation === 'horizontal' && checkWithinBounds(y + (shipLength-1)) ) {
       for(let i = y; i <= y + (shipLength - 1); i++){
         grid[x][i] = 'O';
-        ship.location.push(row + col);
+        ship.addLocation(row + col);
       } 
     }
     else if (orientation === 'vertical' && checkWithinBounds(x + (shipLength-1)) ) {
       for(let i = x; i <= x + (shipLength - 1); i++){
         grid[i][y] = 'O';
-        ship.location.push(row + col);
+        ship.addLocation(row + col);
       } 
     }
   }
@@ -58,9 +58,9 @@ export function createGameBoard() {
       grid[x][y] = 'X'
 
       for (const [_, ship] of Object.entries(fleet)) {
-        if (ship.location.includes(row + col)){
-          ship.ship.hitShip();
-          if (ship.ship.sunk) return 'hit! ship sunk'
+        if (ship.getLocation().includes(row + col)){
+          ship.hitShip();
+          if (ship.sunk) return 'hit! ship sunk'
         }
       }
 
@@ -74,7 +74,7 @@ export function createGameBoard() {
 
   function checkGameOver() {
     for (const [_, ship] of Object.entries(fleet)){
-      if (!ship.ship.sunk) return false
+      if (!ship.sunk) return false
     }
     return true
   }

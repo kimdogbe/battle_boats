@@ -10,10 +10,10 @@ test('check board created', () => {
 });
 
 test('check place ship', () => {
-  const shipOne = {'carrier': { 'ship': createShip(4), 'location': [] },}
-  gameBoard.placeShip('A', '1', 'horizontal', shipOne.carrier)
-  const shipTwo = {'carrier': { 'ship': createShip(5), 'location': [] },}
-  gameBoard.placeShip('C', '5', 'vertical', shipTwo.carrier)
+  const shipOne = createShip(4)
+  gameBoard.placeShip('A', '1', 'horizontal', shipOne)
+  const shipTwo = createShip(5)
+  gameBoard.placeShip('C', '5', 'vertical', shipTwo)
   
   expect(gameBoard.getGrid()).toEqual([
     ['O','O','O','O','-','-','-','-','-','-'],
@@ -33,6 +33,24 @@ test('check place ship not out of bounds', () => {
   const ship = {'carrier': { 'ship': createShip(4), 'location': [] },}
   gameBoard.placeShip('A', '10', 'horizontal', ship.carrier);
   gameBoard.placeShip('J', '1', 'vertical', ship.carrier);
+
+  expect(gameBoard.getGrid()).toEqual([
+    ['O','O','O','O','-','-','-','-','-','-'],
+    ['-','-','-','-','-','-','-','-','-','-'],
+    ['-','-','-','-','O','-','-','-','-','-'],
+    ['-','-','-','-','O','-','-','-','-','-'],
+    ['-','-','-','-','O','-','-','-','-','-'],
+    ['-','-','-','-','O','-','-','-','-','-'],
+    ['-','-','-','-','O','-','-','-','-','-'],
+    ['-','-','-','-','-','-','-','-','-','-'],
+    ['-','-','-','-','-','-','-','-','-','-'],
+    ['-','-','-','-','-','-','-','-','-','-']
+  ])
+})
+
+test('check place ship not overlaping', () => {
+  const ship = createShip(4);
+  gameBoard.placeShip('D', '3', 'horizontal', ship);
 
   expect(gameBoard.getGrid()).toEqual([
     ['O','O','O','O','-','-','-','-','-','-'],
