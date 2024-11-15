@@ -34,13 +34,17 @@ export function createGameBoard() {
     const y = gridMapY(col);
     const shipLength = ship.length;
 
-    if (orientation === 'horizontal' && checkWithinBounds(y + (shipLength-1)) ) {
+    if (orientation === 'horizontal' 
+        && checkWithinBounds(y + (shipLength - 1))
+        && !checkOverlap(x, y, orientation, (shipLength - 1)) ) {
       for(let i = y; i <= y + (shipLength - 1); i++){
         grid[x][i] = 'O';
         ship.addLocation(row + col);
       } 
     }
-    else if (orientation === 'vertical' && checkWithinBounds(x + (shipLength-1)) ) {
+    else if ( orientation === 'vertical' 
+              && checkWithinBounds(x + (shipLength-1))
+              && !checkOverlap(x, y, orientation, (shipLength - 1)) ) {
       for(let i = x; i <= x + (shipLength - 1); i++){
         grid[i][y] = 'O';
         ship.addLocation(row + col);
@@ -79,8 +83,27 @@ export function createGameBoard() {
     return true
   }
 
-  function checkWithinBounds(num){
+  function checkWithinBounds(num) {
     return num < 10 
+  }
+
+  function checkOverlap(startX, startY, orientation, shipLength) {
+    if ( orientation === 'horizontal' ) {
+      for(let i = startY; i <= startY + (shipLength - 1); i++){
+        if (grid[startX][i] === 'O') {
+          return true;
+        }
+      } 
+    }
+    else if ( orientation === 'vertical' ) {
+      for(let i = startX; i <= startX + (shipLength - 1); i++){
+        if (grid[i][startY] === 'O'){
+          return true;
+        }
+      } 
+    }
+
+    return false;
   }
 
   return { getGrid, placeShip, recieveAttack, checkGameOver }
