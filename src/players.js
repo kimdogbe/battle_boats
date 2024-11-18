@@ -7,9 +7,9 @@ export function createPlayer(playerName) {
 
   function getWinStatus() {
     if (playerBoard.checkGameOver) {
-      return true;
+      return false;
     }
-    return false;
+    return true;
   }
 
   return { name, type, playerBoard, getWinStatus }
