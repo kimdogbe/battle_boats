@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Battle Boats</title>
+</head>
+<body>
+  <div id="container">
+    <div id="heading">Battle Boats</div>
+
+    <div id="player-container">
+      <div id="player-grid">
+        <div class="player a">
+          <div class="a1"></div>
+          <div class="a2"></div>
+          <div class="a3"></div>
+          <div class="a4"></div>
+          <div class="a5"></div>
+          <div class="a6"></div>
+          <div class="a7"></div>
+          <div class="a8"></div>
+          <div class="a9"></div>
+          <div class="a10"></div>
+        </div>
+        <div class="player b">
+          <div class="b1"></div>
+          <div class="b2"></div>
+          <div class="b3"></div>
+          <div class="b4"></div>
+          <div class="b5"></div>
+          <div class="b6"></div>
+          <div class="b7"></div>
+          <div class="b8"></div>
+          <div class="b9"></div>
+          <div class="b10"></div>
+        </div>
+        <div class="player c">
+          <div class="c1"></div>
+          <div class="c2"></div>
+          <div class="c3"></div>
+          <div class="c4"></div>
+          <div class="c5"></div>
+          <div class="c6"></div>
+          <div class="c7"></div>
+          <div class="c8"></div>
+          <div class="c9"></div>
+          <div class="c10"></div>
+        </div>
+        <div class="player d">
+          <div class="d1"></div>
+          <div class="d2"></div>
+          <div class="d3"></div>
+          <div class="d4"></div>
+          <div class="d5"></div>
+          <div class="d6"></div>
+          <div class="d7"></div>
+          <div class="d8"></div>
+          <div class="d9"></div>
+          <div class="d10"></div>
+        </div>
+        <div class="player e">
+          <div class="e1"></div>
+          <div class="e2"></div>
+          <div class="e3"></div>
+          <div class="e4"></div>
+          <div class="e5"></div>
+          <div class="e6"></div>
+          <div class="e7"></div>
+          <div class="e8"></div>
+          <div class="e9"></div>
+          <div class="e10"></div>
+        </div>
+        <div class="player f">
+          <div class="f1"></div>
+          <div class="f2"></div>
+          <div class="f3"></div>
+          <div class="f4"></div>
+          <div class="f5"></div>
+          <div class="f6"></div>
+          <div class="f7"></div>
+          <div class="f8"></div>
+          <div class="f9"></div>
+          <div class="f10"></div>
+        </div>
+        <div class="player g">
+          <div class="g1"></div>
+          <div class="g2"></div>
+          <div class="g3"></div>
+          <div class="g4"></div>
+          <div class="g5"></div>
+          <div class="g6"></div>
+          <div class="g7"></div>
+          <div class="g8"></div>
+          <div class="g9"></div>
+          <div class="g10"></div>
+        </div>
+        <div class="player h">
+          <div class="h1"></div>
+          <div class="h2"></div>
+          <div class="h3"></div>
+          <div class="h4"></div>
+          <div class="h5"></div>
+          <div class="h6"></div>
+          <div class="h7"></div>
+          <div class="h8"></div>
+          <div class="h9"></div>
+          <div class="h10"></div>
+        </div>
+        <div class="player i">
+          <div class="i1"></div>
+          <div class="i2"></div>
+          <div class="i3"></div>
+          <div class="i4"></div>
+          <div class="i5"></div>
+          <div class="i6"></div>
+          <div class="i7"></div>
+          <div class="i8"></div>
+          <div class="i9"></div>
+          <div class="i10"></div>
+        </div>
+        <div class="player j">
+          <div class="j1"></div>
+          <div class="j2"></div>
+          <div class="j3"></div>
+          <div class="j4"></div>
+          <div class="j5"></div>
+          <div class="j6"></div>
+          <div class="j7"></div>
+          <div class="j8"></div>
+          <div class="j9"></div>
+          <div class="j10"></div>
+        </div>
+      </div>
+      <div>Your grid</div>
+    </div>
+
+    <div id="bot-container">
+      <div id="bot-grid"></div>
+        <div class="bot a">
+          <div class="a1"></div>
+          <div class="a2"></div>
+          <div class="a3"></div>
+          <div class="a4"></div>
+          <div class="a5"></div>
+          <div class="a6"></div>
+          <div class="a7"></div>
+          <div class="a8"></div>
+          <div class="a9"></div>
+          <div class="a10"></div>
+        </div>
+        <div class="bot b">
+          <div class="b1"></div>
+          <div class="b2"></div>
+          <div class="b3"></div>
+          <div class="b4"></div>
+          <div class="b5"></div>
+          <div class="b6"></div>
+          <div class="b7"></div>
+          <div class="b8"></div>
+          <div class="b9"></div>
+          <div class="b10"></div>
+        </div>
+        <div class="bot c">
+          <div class="c1"></div>
+          <div class="c2"></div>
+          <div class="c3"></div>
+          <div class="c4"></div>
+          <div class="c5"></div>
+          <div class="c6"></div>
+          <div class="c7"></div>
+          <div class="c8"></div>
+          <div class="c9"></div>
+          <div class="c10"></div>
+        </div>
+        <div class="bot d">
+          <div class="d1"></div>
+          <div class="d2"></div>
+          <div class="d3"></div>
+          <div class="d4"></div>
+          <div class="d5"></div>
+          <div class="d6"></div>
+          <div class="d7"></div>
+          <div class="d8"></div>
+          <div class="d9"></div>
+          <div class="d10"></div>
+        </div>
+        <div class="bot e">
+          <div class="e1"></div>
+          <div class="e2"></div>
+          <div class="e3"></div>
+          <div class="e4"></div>
+          <div class="e5"></div>
+          <div class="e6"></div>
+          <div class="e7"></div>
+          <div class="e8"></div>
+          <div class="e9"></div>
+          <div class="e10"></div>
+        </div>
+        <div class="bot f">
+          <div class="f1"></div>
+          <div class="f2"></div>
+          <div class="f3"></div>
+          <div class="f4"></div>
+          <div class="f5"></div>
+          <div class="f6"></div>
+          <div class="f7"></div>
+          <div class="f8"></div>
+          <div class="f9"></div>
+          <div class="f10"></div>
+        </div>
+        <div class="bot g">
+          <div class="g1"></div>
+          <div class="g2"></div>
+          <div class="g3"></div>
+          <div class="g4"></div>
+          <div class="g5"></div>
+          <div class="g6"></div>
+          <div class="g7"></div>
+          <div class="g8"></div>
+          <div class="g9"></div>
+          <div class="g10"></div>
+        </div>
+        <div class="bot h">
+          <div class="h1"></div>
+          <div class="h2"></div>
+          <div class="h3"></div>
+          <div class="h4"></div>
+          <div class="h5"></div>
+          <div class="h6"></div>
+          <div class="h7"></div>
+          <div class="h8"></div>
+          <div class="h9"></div>
+          <div class="h10"></div>
+        </div>
+        <div class="bot i">
+          <div class="i1"></div>
+          <div class="i2"></div>
+          <div class="i3"></div>
+          <div class="i4"></div>
+          <div class="i5"></div>
+          <div class="i6"></div>
+          <div class="i7"></div>
+          <div class="i8"></div>
+          <div class="i9"></div>
+          <div class="i10"></div>
+        </div>
+        <div class="bot j">
+          <div class="j1"></div>
+          <div class="j2"></div>
+          <div class="j3"></div>
+          <div class="j4"></div>
+          <div class="j5"></div>
+          <div class="j6"></div>
+          <div class="j7"></div>
+          <div class="j8"></div>
+          <div class="j9"></div>
+          <div class="j10"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
