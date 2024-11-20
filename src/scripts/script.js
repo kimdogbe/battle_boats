@@ -12,9 +12,7 @@ let shipIndexToPlace = 0;
 const shipTypes = ['carrier', 'battleship', 'destroyer', 'submarine', 'patrolBoat'];
 const orientation = 'vertical'
 
-// for (const ship of Object.entries(player.playerBoard.fleet) ){
-//   player.playerBoard.placeShip()
-// }
+placeBotShips();
 
 playerGrid.addEventListener('click', (event) => {
   if (!gameStarted){
@@ -58,10 +56,27 @@ function updateGrid(player, domGrid) {
       else if (element === 'M'){
         domGrid.children[rowIndex].children[index].style.backgroundColor = 'blue';
       } 
-      else if (element === 'O'){
+      else if (element === 'O' && player.type === 'human'){
         domGrid.children[rowIndex].children[index].style.backgroundColor = 'grey';
       }
     })
 
   }
+}
+
+function placeBotShips() {
+  const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
+
+  for ( let i = 0; i < 5; ){
+    const row = letters[getRandomInt(10)];
+    const col = getRandomInt(10) + 1;
+    const orientation = getRandomInt(2) === 0 ? 'horizontal' : 'vertical';
+    bot.playerBoard.placeShip(row, col, orientation, bot.fleet[shipTypes[i]]);
+
+    if (bot.fleet[shipTypes[i]].getLocation().length != 0) i++
+  }
+}
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
 }
