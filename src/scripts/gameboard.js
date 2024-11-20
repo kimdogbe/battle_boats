@@ -14,6 +14,7 @@ const newGrid = [
   /* J */ ['-','-','-','-','-','-','-','-','-','-']
 ]
 const gridMapX = { 'A':0, 'B':1, 'C':2, 'D':3, 'E':4, 'F':5, 'G':6, 'H':7, 'I':8, 'J':9 };
+const gridMapXReverse = { 0:'A', 1:'B', 2:'C', 3:'D', 4:'E', 5:'F', 6:'G', 7:'H', 8:'I', 9:'J' };
 const gridMapY = (num) => num - 1;
 
 export function createGameBoard() {
@@ -31,7 +32,7 @@ export function createGameBoard() {
         && !checkOverlap(x, y, orientation, (shipLength - 1)) ) {
       for(let i = y; i <= y + (shipLength - 1); i++){
         grid[x][i] = 'O';
-        ship.addLocation(row + col);
+        ship.addLocation(row, i+1);
       } 
     }
     else if ( orientation === 'vertical' 
@@ -39,7 +40,7 @@ export function createGameBoard() {
               && !checkOverlap(x, y, orientation, (shipLength - 1)) ) {
       for(let i = x; i <= x + (shipLength - 1); i++){
         grid[i][y] = 'O';
-        ship.addLocation(row + col);
+        ship.addLocation(gridMapXReverse[i], col);
       } 
     }
   }
@@ -81,14 +82,14 @@ export function createGameBoard() {
 
   function checkOverlap(startX, startY, orientation, shipLength) {
     if ( orientation === 'horizontal' ) {
-      for(let i = startY; i <= startY + (shipLength - 1); i++){
+      for(let i = startY; i <= startY + (shipLength); i++){
         if (grid[startX][i] === 'O') {
           return true;
         }
       } 
     }
     else if ( orientation === 'vertical' ) {
-      for(let i = startX; i <= startX + (shipLength - 1); i++){
+      for(let i = startX; i <= startX + (shipLength); i++){
         if (grid[i][startY] === 'O'){
           return true;
         }

@@ -7,7 +7,7 @@ const botGrid = document.querySelector('#bot-grid');
 const player = createPlayer('Kofi');
 const bot = createPlayer();
 
-const gameStarted = false;
+let gameStarted = false;
 let shipIndexToPlace = 0;
 const shipTypes = ['carrier', 'battleship', 'destroyer', 'submarine', 'patrolBoat'];
 const orientation = 'vertical'
@@ -22,11 +22,16 @@ playerGrid.addEventListener('click', (event) => {
     const row = targetBox.slice(0, 1).toUpperCase();
     const col = targetBox.slice(1);
     console.log(row, col);
+    const nextShip = player.fleet[shipTypes[shipIndexToPlace]];
 
-    player.playerBoard.placeShip(row, col, orientation, player.fleet[shipTypes[shipIndexToPlace]]);
-    updateGrid(player, playerGrid);
+    player.playerBoard.placeShip(row, col, orientation, nextShip);
+    console.log(nextShip.getLocation());
+    
+    if (nextShip.getLocation().length != 0){
+      updateGrid(player, playerGrid);
+      shipIndexToPlace += 1;
+    }
 
-    shipIndexToPlace += 1;
     if (shipIndexToPlace > 4) gameStarted = true;
   }
 })
