@@ -78,3 +78,8 @@
 #player-grid > div > div:hover {
   background-color: rgba(200, 192, 192, 0.5);
 }
+
+button {
+  padding: 5px;
+  border-radius: 5px;
+}

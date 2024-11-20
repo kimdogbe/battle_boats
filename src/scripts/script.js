@@ -4,15 +4,27 @@ import { createShip } from "./ship.js";
 
 const playerGrid = document.querySelector('#player-grid');
 const botGrid = document.querySelector('#bot-grid');
+const orientationButton = document.querySelector('#orientation-btn')
 const player = createPlayer('Kofi');
 const bot = createPlayer();
 
 let gameStarted = false;
 let shipIndexToPlace = 0;
 const shipTypes = ['carrier', 'battleship', 'destroyer', 'submarine', 'patrolBoat'];
-const orientation = 'vertical'
+let orientation = 'vertical';
 
 placeBotShips();
+
+orientationButton.addEventListener('click', () => {  
+  if (orientation === 'vertical'){
+    orientation = 'horizontal';
+    orientationButton.textContent = 'Change to Vertical';
+  } 
+  else if (orientation === 'horizontal') {
+    orientation = 'vertical'
+    orientationButton.textContent = 'Change to Horizontal';
+  }
+})
 
 playerGrid.addEventListener('click', (event) => {
   if (!gameStarted){
