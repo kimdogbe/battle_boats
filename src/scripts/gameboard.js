@@ -19,14 +19,6 @@ const gridMapY = (num) => num - 1;
 export function createGameBoard() {
   let grid = newGrid;
 
-  const fleet = {
-    'carrier': createShip(5),
-    'battleship': createShip(4),
-    'destroyer': createShip(3),
-    'submarine': createShip(3),
-    'patrolBoat': createShip(2),
-  }
-
   const getGrid = () => grid;
 
   function placeShip(row, col, orientation, ship) {
@@ -52,7 +44,7 @@ export function createGameBoard() {
     }
   }
 
-  function recieveAttack(row, col) {
+  function recieveAttack(row, col, fleet) {
     if ( (row in gridMapX) && (col < 1) && (col > 10) ) return "Somehow you've you're out of bounds. Try again"
     
     const x = gridMapX[row];
@@ -76,7 +68,7 @@ export function createGameBoard() {
     }
   }
 
-  function checkGameOver() {
+  function checkGameOver(fleet) {
     for (const [_, ship] of Object.entries(fleet)){
       if (!ship.sunk) return false
     }
@@ -106,5 +98,5 @@ export function createGameBoard() {
     return false;
   }
 
-  return { getGrid, placeShip, recieveAttack, checkGameOver, fleet }
+  return { getGrid, placeShip, recieveAttack, checkGameOver }
 }
