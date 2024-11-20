@@ -1,4 +1,4 @@
-import { createShip } from "./ship";
+import { createShip } from "./ship.js";
 
 const newGrid = [
   //        1   2   3   4   5   6   7   8   9   10

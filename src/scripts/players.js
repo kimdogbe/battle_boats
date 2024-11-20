@@ -1,4 +1,4 @@
-import { createGameBoard } from "./gameboard";
+import { createGameBoard } from "./gameboard.js";
 
 export function createPlayer(playerName) {
   const name = playerName;
