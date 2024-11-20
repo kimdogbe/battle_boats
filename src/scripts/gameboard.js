@@ -106,5 +106,5 @@ export function createGameBoard() {
     return false;
   }
 
-  return { getGrid, placeShip, recieveAttack, checkGameOver }
+  return { getGrid, placeShip, recieveAttack, checkGameOver, fleet }
 }
