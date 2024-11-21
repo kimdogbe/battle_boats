@@ -1,4 +1,4 @@
-import { createPlayer } from "../src/players";
+import { createPlayer } from "../src/scripts/players";
 
 const player = createPlayer('kofi');
 const bot = createPlayer('');

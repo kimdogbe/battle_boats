@@ -52,16 +52,25 @@ botGrid.addEventListener('click', (event) => {
     const targetBox = event.target.className 
     const row = targetBox.slice(0, 1).toUpperCase();
     const col = targetBox.slice(1);
+    let gameover = false;
 
     bot.playerBoard.recieveAttack(row, col, bot.fleet);
     updateGrid(bot, botGrid);
+    gameover = bot.playerBoard.checkGameOver(bot.fleet);    
+    if (gameover) handleGameover('player');
 
-    setTimeout(() => 0, 2000);
     const index = botAttack(botAttackChoices);
     botAttackChoices.splice(index, 1);
     updateGrid(player, playerGrid);
+    gameover = player.playerBoard.checkGameOver(player.fleet);
+    if (gameover) handleGameover('bot');
   }
 })
+
+function handleGameover(winner) {
+  console.log("Winner:" + winner);
+  
+}
 
 function updateGrid(player, domGrid) {
   const grid = player.playerBoard.getGrid();

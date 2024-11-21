@@ -1,4 +1,4 @@
-import { createShip } from '../src/ship.js'
+import { createShip } from '../src/scripts/ship.js'
 
 
 const testShip = createShip(4);

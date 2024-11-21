@@ -55,7 +55,7 @@ export function createGameBoard() {
       for (const [_, ship] of Object.entries(fleet)) {
         if (ship.getLocation().includes(row + col)){
           ship.hitShip();
-          if (ship.sunk) return 'hit! ship sunk'
+          if (ship.getSunk()) return 'hit! ship sunk'
         }
       }
 
@@ -68,8 +68,8 @@ export function createGameBoard() {
   }
 
   function checkGameOver(fleet) {
-    for (const [_, ship] of Object.entries(fleet)){
-      if (!ship.sunk) return false
+    for (const [index, ship] of Object.entries(fleet)){
+      if (!ship.getSunk()) return false
     }
     return true
   }

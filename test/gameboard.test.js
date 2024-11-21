@@ -1,5 +1,5 @@
-import { createGameBoard } from '../src/gameboard.js'
-import { createShip } from '../src/ship.js';
+import { createGameBoard } from '../src/scripts/gameboard.js'
+import { createShip } from '../src/scripts/ship.js';
 
 const gameBoard = createGameBoard();
 

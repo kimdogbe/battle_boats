@@ -25,7 +25,8 @@ export function createShip(shipLength) {
     }
   }
 
+  const getSunk = () => sunk;
   const getHitCount = () => hitCount;
 
-  return { length, hitShip, getHitCount, addLocation, getLocation }
+  return { length, hitShip, getHitCount, addLocation, getLocation, getSunk }
 }
