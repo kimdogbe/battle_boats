@@ -14,6 +14,7 @@ const shipTypes = ['carrier', 'battleship', 'destroyer', 'submarine', 'patrolBoa
 let orientation = 'vertical';
 
 placeBotShips();
+let botAttackChoices = allBoxesIds();
 
 orientationButton.addEventListener('click', () => {  
   if (orientation === 'vertical'){
@@ -54,6 +55,11 @@ botGrid.addEventListener('click', (event) => {
 
     bot.playerBoard.recieveAttack(row, col, bot.fleet);
     updateGrid(bot, botGrid);
+
+    setTimeout(() => 0, 2000);
+    const index = botAttack(botAttackChoices);
+    botAttackChoices.splice(index, 1);
+    updateGrid(player, playerGrid);
   }
 })
 
@@ -87,6 +93,23 @@ function placeBotShips() {
 
     if (bot.fleet[shipTypes[i]].getLocation().length != 0) i++
   }
+}
+
+function allBoxesIds() {
+  const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
+  const numbers = [1,2,3,4,5,6,7,8,9,10];
+  const boxes = letters.flatMap(letter => numbers.map(num => letter + num))
+  return boxes;
+}
+
+function botAttack(choices) {
+  const index = getRandomInt(choices.length);
+  const boxToAttack = choices[index];
+  const row = boxToAttack.slice(0, 1).toUpperCase();
+  const col = boxToAttack.slice(1);
+  console.log(`Bot attacking ${boxToAttack}`)
+  player.playerBoard.recieveAttack(row, col, player.fleet);
+  return index;
 }
 
 function getRandomInt(max) {
