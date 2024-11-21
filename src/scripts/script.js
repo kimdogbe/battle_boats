@@ -5,10 +5,12 @@ import { createShip } from "./ship.js";
 const playerGrid = document.querySelector('#player-grid');
 const botGrid = document.querySelector('#bot-grid');
 const orientationButton = document.querySelector('#orientation-btn')
+const gameoverDialog = document.querySelector('#gameover');
 const player = createPlayer('Kofi');
 const bot = createPlayer();
 
 let gameStarted = false;
+let gameover = false;
 let shipIndexToPlace = 0;
 const shipTypes = ['carrier', 'battleship', 'destroyer', 'submarine', 'patrolBoat'];
 let orientation = 'vertical';
@@ -48,28 +50,28 @@ playerGrid.addEventListener('click', (event) => {
 })
 
 botGrid.addEventListener('click', (event) => {
-  if (gameStarted){
+  if (gameStarted && !gameover){
     const targetBox = event.target.className 
     const row = targetBox.slice(0, 1).toUpperCase();
     const col = targetBox.slice(1);
-    let gameover = false;
 
     bot.playerBoard.recieveAttack(row, col, bot.fleet);
     updateGrid(bot, botGrid);
     gameover = bot.playerBoard.checkGameOver(bot.fleet);    
-    if (gameover) handleGameover('player');
+    if (gameover) return handleGameover('You win!');
 
     const index = botAttack(botAttackChoices);
     botAttackChoices.splice(index, 1);
     updateGrid(player, playerGrid);
     gameover = player.playerBoard.checkGameOver(player.fleet);
-    if (gameover) handleGameover('bot');
+    if (gameover) return handleGameover('Bot wins...');
   }
 })
 
 function handleGameover(winner) {
-  console.log("Winner:" + winner);
-  
+  gameoverDialog.children[0].textContent = 'Game Over ' + winner
+  gameoverDialog.showModal();
+  return winner
 }
 
 function updateGrid(player, domGrid) {

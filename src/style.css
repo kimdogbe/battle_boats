@@ -83,3 +83,16 @@ button {
   padding: 5px;
   border-radius: 5px;
 }
+
+dialog {
+  padding: 10px;
+  border-radius: 5px;
+  align-self: center;
+  justify-self: center;
+  font-size: 2rem;
+  text-align: center;
+}
+
+dialog > p {
+  font-size: 0.8rem;
+}
